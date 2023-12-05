@@ -1,11 +1,24 @@
 <script>
-    import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace.js'
-    let htmlElement = document.getElementsByTagName('html')[0]
-    htmlElement.classList.add('sl-theme-dark')
+    import Sidebar from "../components/Sidebar.svelte";
 </script>
 
-
+<body>
+    <Sidebar/>
+    <div class="page">
+        <h1>Page</h1>
+        <p>Just a basic page for stuff and yeah</p>
+    </div>
+</body>
 
 <style>
-    @import url('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    body {
+        background-color: #1e1e1e;
+        color: #fff;
+        height: 100vh;
+        margin: 0px;
+
+        font-family: 'Poppins', sans-serif;
+    }
 </style>
