@@ -9,6 +9,17 @@
 
     onMount(() => {
         document.body.style.marginLeft = '12em';
+
+        // Automatically expand the details menu that the active a tag is in
+        const detailsElements = document.querySelectorAll('details');
+        for (let i = 0; i < detailsElements.length; i++) {
+            const aElements = detailsElements[i].querySelectorAll('a');
+            for (let j = 0; j < aElements.length; j++) {
+                if (aElements[j].classList.contains('selected')) {
+                    detailsElements[i].setAttribute('open', '');
+                }
+            }
+        }
     });
 </script>
 
@@ -17,7 +28,11 @@
     <hr>
     <details>
         <summary>Commands</summary>
-        <a href='/commands/addemote' id="commands-addemote" class:selected={active === '/commands/addemote'}>addemote</a>
+        <details>
+            <summary>Guild</summary>
+            <a href='/commands/guild/addemote' class:selected={active === '/commands/guild/addemote'}>Addemote</a>
+            <a href='/commands/guild/autorole' class:selected={active === '/commands/guild/autorole'}>Autorole</a>
+        </details>
     </details>
 </div>
 

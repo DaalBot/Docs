@@ -5,7 +5,7 @@
 <body>
     <Sidebar/>
     <div class="page">
-        <h1>Page</h1>
+        <h1><b>DaalBot Docs</b></h1>
         <p>Just a basic page for stuff and yeah</p>
     </div>
 </body>
@@ -20,5 +20,9 @@
         margin: 0px;
 
         font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        font-size: 3em;
     }
 </style>
