@@ -1,5 +1,5 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
+    import { onMount } from 'svelte';
     import { browser } from '$app/environment';
     let active = '';
 
@@ -8,7 +8,9 @@
     }
 
     onMount(() => {
-        document.body.style.marginLeft = '12em';
+        document.body.style.marginLeft = '19em';
+        document.body.style.backgroundColor = '#1e1e1e';
+        document.body.style.color = '#fff';
 
         // Automatically expand the details menu that the active a tag is in
         const detailsElements = document.querySelectorAll('details');
@@ -34,6 +36,10 @@
             <a href='/commands/guild/autorole' class:selected={active === '/commands/guild/autorole'}>Autorole</a>
         </details>
     </details>
+    <details>
+        <summary>Guides</summary>
+        <a href='/guides/getting-message-id' class:selected={active === '/guides/getting-message-id'}>Getting Message IDs</a>
+    </details>
 </div>
 
 <style>
@@ -44,7 +50,7 @@
         position: fixed;
         left: 0;
         top: 0;
-        width: 150px; /* Adjusted width */
+        width: 250px; /* Adjusted width */
         height: 100%; /* Adjusted height */
         background-color: #202225;
         border-radius: 1em;

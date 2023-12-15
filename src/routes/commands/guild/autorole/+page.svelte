@@ -1,27 +1,16 @@
 <script>
+    import Header from "../../../../components/Header.svelte";
     import Sidebar from "../../../../components/Sidebar.svelte";
     import Switch from "../../../../components/Switch.svelte";
 
     let selected = 'add';
-
-    // Reactivity
-    $: {
-        if (selected === 'add') {
-            // Load HTML for 'add'
-        } else if (selected === 'remove') {
-            // Load HTML for 'remove'
-        } else if (selected === 'list') {
-            // Load HTML for 'list'
-        }
-  }
 </script>
 
 <body>
     <Sidebar/>
     <div class="page">
-        <h1 id=page-title><b>Autorole</b></h1>
-        <p id="page-description">Modifies / Lists the roles assigned to a user when they join the server</p>
-        <hr/>
+        <Header title="Auto role" description="Modifies / Lists the roles assigned to a user when they join the server" type="command"/>
+
         <h2>Usage</h2>
         <p><code>/autorole [subcommand] [role]</code></p>
         <br/>
@@ -60,15 +49,11 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    h1 {
-        font-size: 3em;
-    }
+    code {
+        background-color: #2f3136;
+        border-radius: 5px;
+        padding: 5px;
 
-    #page-title {
-        margin-bottom: 0px;
-    }
-
-    #page-description {
-        margin-top: 0px;
+        font-family: Poppins, sans-serif;
     }
 </style>
