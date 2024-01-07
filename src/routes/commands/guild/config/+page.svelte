@@ -42,11 +42,11 @@
             <p><b>Name: channel | Type: Channel</b></p> - The channel where level up messages are sent
         {:else if subCommand === 'logs'}
             <h3>Description:</h3>
-            <p>Configures the channel where logs are sent</p>
+            <p>Configures the channel where alerts from DaalBot are sent</p>
             <br/>
 
             <h3><b>Options:</b></h3>
-            <p><b>Name: channel | Type: Channel</b></p> - The channel where logs are sent
+            <p><b>Name: channel | Type: Channel</b></p> - The channel where alerts are sent
         {/if}
     {/if}
 </div>

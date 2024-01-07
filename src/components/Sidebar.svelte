@@ -1,7 +1,40 @@
 <script>
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
+    import commandMap from '$lib/data/commandMap';
     let active = '';
+
+    /**
+     * @type {Array<{name: string, data: Array<{name: string, url: string}>}>}
+    */
+    let categories = []
+
+    for (let i = 0; i < commandMap.length; i++) {
+        const command = commandMap[i];
+        let category = command.url.replace('/commands/', '').split('/')[0];
+        let name = command.name;
+
+        // Set the first letter to uppercase
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        category = category.charAt(0).toUpperCase() + category.slice(1);
+
+        if (categories.filter(c => c.name === category).length === 0) {
+            categories.push({
+                name: category,
+                data: [
+                    {
+                        name: name,
+                        url: command.url
+                    }
+                ]
+            });
+        } else {
+            categories.filter(c => c.name === category)[0].data.push({
+                name: name,
+                url: command.url
+            });
+        }
+    }
 
     if (browser) {
         active = window.location.pathname;
@@ -30,11 +63,14 @@
     <hr>
     <details>
         <summary>Commands</summary>
+        {#each categories as category}
         <details>
-            <summary>Guild</summary>
-            <a href='/commands/guild/addemote' class:selected={active === '/commands/guild/addemote'}>Addemote</a>
-            <a href='/commands/guild/autorole' class:selected={active === '/commands/guild/autorole'}>Autorole</a>
+            <summary>{category.name}</summary>
+            {#each category.data as command}
+                <a href={command.url} class:selected={active === command.url}>{command.name}</a>
+            {/each}
         </details>
+        {/each}
     </details>
     <details>
         <summary>Guides</summary>
