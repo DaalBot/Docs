@@ -12,6 +12,7 @@
 
     import { browser } from '$app/environment';
     import commandMap from '$lib/data/commandMap'
+    import guideMap from '$lib/data/guideMap'
 
     if (browser) {
         // Detect Ctrl + K
@@ -47,8 +48,10 @@
         let overrideResults = [];
 
         const filteredCommands = commandMap.filter(c => (c.name.includes(query) && c.name !== 'explination')); // Filter out commands that don't match the query / are just explination pages
+        const filteredGuides = guideMap.filter(g => g.name.toLowerCase().includes(query.replace('?', '')));
 
         if (query.startsWith('/')) overrideResults = filteredCommands;
+        if (query.startsWith('?')) overrideResults = filteredGuides;
 
         for (let i = 0; i < filteredCommands.length; i++) {
             const command = filteredCommands[i];
@@ -58,6 +61,18 @@
                 bestResults.push({
                     name: `/${name}`,
                     url: command.url
+                });
+            }
+        }
+
+        for (let i = 0; i < filteredGuides.length; i++) {
+            const guide = filteredGuides[i];
+            const name = guide.name;
+
+            if (name.toLowerCase().includes(query)) {
+                bestResults.push({
+                    name: `${name}`,
+                    url: guide.url
                 });
             }
         }

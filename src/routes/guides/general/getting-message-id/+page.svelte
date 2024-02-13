@@ -1,6 +1,6 @@
 <script>
-    import Sidebar from "../../../components/Sidebar.svelte";
-    import Header from "../../../components/Header.svelte";
+    import Sidebar from "../../../../components/Sidebar.svelte";
+    import Header from "../../../../components/Header.svelte";
 
     async function show_meth3_disclaimer() {
         let meth3_disclaimer = document.getElementById("meth3_disclaimer") ?? new HTMLElement;
@@ -14,7 +14,7 @@
 </script>
 
 <Sidebar/>
-<Header title="Getting Message IDs" description="Learn how to get message IDs" type="other"/>
+<Header title="Getting Message IDs" description="Learn how to get message IDs" type="guide"/>
 <br/>
 <div class="page">
     <h2>

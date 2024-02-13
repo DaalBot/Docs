@@ -2,12 +2,18 @@
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
     import commandMap from '$lib/data/commandMap';
+    import guideMap from '$lib/data/guideMap';
     let active = '';
 
     /**
      * @type {Array<{name: string, data: Array<{name: string, url: string}>}>}
     */
-    let categories = []
+    let commandCategories = []
+
+    /**
+     * @type {Array<{name: string, data: Array<{name: string, url: string}>}>}
+    */
+    let guideCategories = []
 
     for (let i = 0; i < commandMap.length; i++) {
         const command = commandMap[i];
@@ -18,8 +24,8 @@
         name = name.charAt(0).toUpperCase() + name.slice(1);
         category = category.charAt(0).toUpperCase() + category.slice(1);
 
-        if (categories.filter(c => c.name === category).length === 0) {
-            categories.push({
+        if (commandCategories.filter(c => c.name === category).length === 0) {
+            commandCategories.push({
                 name: category,
                 data: [
                     {
@@ -29,9 +35,36 @@
                 ]
             });
         } else {
-            categories.filter(c => c.name === category)[0].data.push({
+            commandCategories.filter(c => c.name === category)[0].data.push({
                 name: name,
                 url: command.url
+            });
+        }
+    }
+
+    for (let i = 0; i < guideMap.length; i++) {
+        const guide = guideMap[i];
+        let category = guide.url.replace('/guides/', '').split('/')[0];
+        let name = guide.name;
+
+        // Set the first letter to uppercase
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        category = category.charAt(0).toUpperCase() + category.slice(1);
+
+        if (guideCategories.filter(c => c.name === category).length === 0) {
+            guideCategories.push({
+                name: category,
+                data: [
+                    {
+                        name: name,
+                        url: guide.url
+                    }
+                ]
+            });
+        } else {
+            guideCategories.filter(c => c.name === category)[0].data.push({
+                name: name,
+                url: guide.url
             });
         }
     }
@@ -63,7 +96,7 @@
     <hr>
     <details>
         <summary>Commands</summary>
-        {#each categories as category}
+        {#each commandCategories as category}
         <details>
             <summary>{category.name}</summary>
             {#each category.data as command}
@@ -74,7 +107,14 @@
     </details>
     <details>
         <summary>Guides</summary>
-        <a href='/guides/getting-message-id' class:selected={active === '/guides/getting-message-id'}>Getting Message IDs</a>
+        {#each guideCategories as category}
+        <details>
+            <summary>{category.name}</summary>
+            {#each category.data as guide}
+                <a href={guide.url} class:selected={active === guide.url}>{guide.name}</a>
+            {/each}
+        </details>
+        {/each}
     </details>
 </div>
 
