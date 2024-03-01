@@ -25,7 +25,13 @@ const guideMap = [
         url: '/guides/general/getting-message-id',
         page: 0,
         category: 'General'
-    }
+    },
+    // {
+    //     name: '1 - Introduction to Events',
+    //     url: '/guides/events',
+    //     page: 2,
+    //     category: 'Events'
+    // }
 ]
 
 export default guideMap;

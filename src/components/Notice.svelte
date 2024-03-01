@@ -8,11 +8,19 @@
      * @type {string}
     */
     export let height = "10em";
+
+    /**
+     * @type {string}
+    */
+    export let padding = "1em";
+
+    // This is a hack to allow for the extension of the style of the notice component
+    export let extStyle = "";
 </script>
 
-<div class="noticecomp" style="height: {height};">
+<div class="noticecomp" style="height: {height}; {extStyle}">
     <span class="noticecomp-stripe noticecomp-stripe-{type}" style="height: {height};" />
-    <div class="noticecomp-content">
+    <div class="noticecomp-content" style="padding: {padding}">
         <slot />
     </div>
 </div>
@@ -57,7 +65,6 @@
         display: inline-block;
         margin-left: 1.5em;
 
-        padding: 1em;
         padding-left: 0.5em;
 
         font-size: 1.5em;

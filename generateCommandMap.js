@@ -35,7 +35,8 @@ const commandMapOther = [
     'poll',
     'randomhexvalue',
     'site',
-    'userinfo'
+    'userinfo',
+    'beta'
 ]
 
 const commandMapPen = [

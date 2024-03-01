@@ -12,7 +12,7 @@
     <p>
         To add DaalBot to your server, you will need to have the <code>Manage Server</code> / <code>Administrator</code> permission. If you have this permission, you can add the bot to your server by clicking the button below.
     </p><br/>
-    <a class="invite-button" href="https://lnk.daalbot.xyz">
+    <a class="invite-button" href="https://lnk.daalbot.xyz/Invite">
         Invite DaalBot
     </a><br/><br/><br/><br/><br/><br/>
     <p>
