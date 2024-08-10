@@ -14,6 +14,12 @@
     }
 </script>
 
+<svelte:head>
+    <title>DaalBot Documentation</title>
+    <meta name="description" content="The documentation for DaalBot."/>
+    <meta name="keywords" content="DaalBot, Discord, Bot, Documentation, Docs"/>
+</svelte:head>
+
 <div class="page">
     <div class="content">
         <h1>DaalBot Docs</h1><br/>
