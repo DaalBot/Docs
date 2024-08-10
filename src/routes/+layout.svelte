@@ -1,9 +1,5 @@
 <script>
-    import Search from "../components/Search.svelte";
+    import '$lib/global.css';
 </script>
 
-<svelte:head>
-    <title>DaalBot Docs</title>
-</svelte:head>
-<Search />
-<slot />
+<slot/>

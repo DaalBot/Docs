@@ -1,119 +1,169 @@
 <script>
-    import Sidebar from "../components/Sidebar.svelte";
-    import SearchIcon from "$lib/icons/search.svg";
-    import { browser } from "$app/environment";
+    let searchValue = '';
+    /**
+     * @type {{ name: string, path: string, meta?: any }[]}
+    */
+    let results = [];
+    import { search } from '$lib/search'; 
 
-    async function openSearch() {
-        if (browser) {
-            const searchModal = document.getElementById('search-popup-modal')
-            if (searchModal) searchModal.style.display = 'flex';
-
-            const searchOverlay = document.getElementById('search-popup-overlay')
-            if (searchOverlay) searchOverlay.style.display = 'block';
-        }
+    $: {
+        (async () => {
+            if (searchValue == '') return results = [];
+            results = await search(searchValue);
+        })();
     }
 </script>
 
-<body>
-    <Sidebar/>
-    <div class="topbar">
-        <div class="left">
-            <a href="/">Home</a>
+<div class="page">
+    <div class="content">
+        <h1>DaalBot Docs</h1><br/>
+        <div class="search">
+            <input type="text" bind:value={searchValue} placeholder="Search"/>
+            {#if results.length > 0}
+                <div class="results">
+                    {#each results as result}
+                        <a href="/docs{result.path}" style="color: white; text-decoration: none;" class="result">
+                            <div style="margin: 5px;">
+                                {result.path.replace('/docs/', '').split('/')[0].replace(/\b\w/g, (/** @type {string} */ l) => l.toUpperCase())} > {result.name}
+                            </div>
+                        </a>
+                    {/each}
+                </div>
+            {/if}
         </div>
-        <div class="right">
-            <button on:click={openSearch}><img src={SearchIcon} alt=""/></button>
-        </div>
-    </div>
-    <div class="page">
-        <h1><b>DaalBot Docs</b></h1>
-        <p>
-            Welcome to the DaalBot documentation! Here you can find all the information you will need to use DaalBot. To get started select a item from the sidebar or search for something by hitting the search button in the top right or hitting CTRL + K.
-        </p>
     </div>
     <div class="footer">
-        <span style="text-align: center; margin: auto; display: block;"><a href="/acknowledgements">Acknowledgements</a> | <a href="https://lnk.daalbot.xyz/Privacy">Privacy</a></span>
+        <a href="/docs/general/getting-started">
+            <span class="next-icon">➡️</span>
+            <span class="text">Getting Started</span>
+        </a>
     </div>
-</body>
+</div>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    .page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 91.5vh;
+    }
 
-    body {
-        background-color: #1e1e1e;
-        color: #fff;
-        height: 100vh;
-        margin: 0px;
-
-        font-family: 'Poppins', sans-serif;
-
-        z-index: 0;
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     h1 {
         font-size: 3em;
     }
 
-    .page {
-        padding-top: 5em;
-    }
+    .search {
+        width: 95%;
+        padding: 10px;
 
-    .topbar {
-        background-color: #343a4b;
-        padding: 1em;
-
-        margin: auto;
-
-        width: 81%;
-        margin-top: 1em;
-        margin-bottom: 1em;
-
-        z-index: 1;
-
-        border-radius: 1rem;
-
-        position: fixed;
+        background-color: #2f2f2f;
+        border: 1px solid #2f2f2f;
+        border-radius: 15px;
 
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    .topbar .left {
-        width: 50%;
-        text-align: left;
-    }
-
-    .topbar .right {
-        width: 50%;
-        text-align: right;
-    }
-
-    .topbar a {
-        color: #fff;
-        text-decoration: none;
+    input[type="text"] {
+        color: white;
 
         font-size: 1.5em;
+
+        /* Center text */
+        text-align: center;
+        background-color: #2f2f2f;
+        border: none;
+
+        display: block;
+
+        font-weight: bold;
     }
 
-    .topbar a:hover {
-        color: #fff;
-        text-decoration: underline;
+    .results {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 15px;
+    }
+
+    .result {
+        width: 75%;
+        padding: 10px;
+
+        background-color: #2f2f2f;
+        border: 1px solid #2f2f2f;
+        border-radius: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 5px;
+    }
+
+    .result:hover {
+        background-color: #3f3f3f;
+
+        font-weight: bold;
     }
 
     .footer {
-        background-color: #2f2f2f;
-        padding: 2.5em;
-
-        width: 82%;
-        margin-top: 1em;
-        margin-left: -2.2em;
-
-        z-index: 1;
-
         position: fixed;
-        bottom: 0;
+        width: 92.5%;
+
+        background-color: #2f2f2f;
+
+        border: solid 7px #4d4d4d;
+        border-radius: 15px;
+
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2em;
+
+        padding: 10px;
+        height: 5em;
     }
 
     .footer a {
-        color: #fff;
+        color: white;
         text-decoration: none;
+
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            width: 85%;
+        }
+    }
+
+    .next-icon {
+        font-size: 2em;
+    }
+
+    .text {
+        font-size: 1.5em;
+        font-weight: 550;
     }
 </style>
