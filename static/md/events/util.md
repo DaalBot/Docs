@@ -13,3 +13,24 @@ Sets a variable in the database. If `global` is set to `true`, it will set the v
 A promise based HTTP client for the browser and node.js.
 ### `crypto`
 Built in Node.js module that provides cryptographic functionality.
+### `csvman` - `@npiny/csvman`
+A simple CSV parser and writer for Node.js.
+
+### `discord` - `discord.js (limited)`
+A collection of a few classes from discord.js that are safe to use in events.
+Object:<br/>
+```js
+discord: {
+    embed: DJS.EmbedBuilder,
+    components: {
+        row: DJS.ActionRowBuilder,
+        button: DJS.ButtonBuilder,
+        selectMenu: {
+            string: {
+                option: DJS.StringSelectMenuOptionBuilder,
+                builder: DJS.StringSelectMenuBuilder
+            }
+        }
+    }
+}
+```
