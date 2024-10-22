@@ -1,3 +1,51 @@
+<script>
+    import { onMount } from "svelte";
+
+    /**
+     * JSON representation of the documentation
+     * @type {{release: string, routes: Array<{path: string, description: string, method: string, route: string, params: {[key: string]: string}}>}}}
+     */
+    let docs = {
+        release: '', // Release ID the documentation was generated from
+        routes: [
+            {
+                path: 'routes/get/test/ping.js',
+                description: 'Replies with "pong" if the API is working',
+                method: 'GET',
+                route: '/get/test/ping',
+                params: {
+                    'none': 'No parameters required'
+                }
+            }
+        ]
+    };
+
+    /**
+     * @type {{ [key: string]: string }}
+     */
+    const methodVarient = {
+        GET: 'primary',
+        POST: 'success',
+        PUT: 'warning',
+        DELETE: 'danger'
+    };
+
+    onMount(async() => {
+        const res = await fetch('https://cdn.jsdelivr.net/gh/DaalBot/API/docs.json');
+        docs = await res.json();
+    }) // Fetch the documentation from the API repository
+</script>
+
+<svelte:head>
+    <title>DaalBot API Documentation</title>
+    <meta name="description" content="The documentation for the api.daalbot.xyz API">
+    <meta name="keywords" content="daalbot, api, documentation">
+    <meta name="author" content="DaalBot">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.17.1/cdn/themes/dark.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.17.1/cdn/components/tag/tag.js"></script>
+</svelte:head>
+
 <div class="page-header" style="text-align: center;">
     <h1>DaalBot API</h1>
     <p>The documentation for the <code>api.daalbot.xyz</code> API</p>
@@ -19,12 +67,55 @@
     </p>
     <br>
     <div class="route-area">
-        <h2>Routes [Coming soon]</h2>
+        <h2>Routes</h2>
         <p>
             The following are the routes that are available in the DaalBot API.
         </p>
         <br>
-        <!-- TODO: Add the routes from docs.json in DaalBot/API -->
+
+        <p>
+            <strong>Release:</strong> {docs.release} | You can click on the route to view the source code on GitHub or click the background to view the parameters and other info.
+        </p>
+        <div class="route-list">
+            {#each docs.routes as route}
+                <div class="card" style="margin-bottom: 1rem;">
+                    <details>
+                        <summary>
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <sl-tag variant={methodVarient[route.method]}>{route.method}</sl-tag>
+                                    <span><a href="https://github.com/DaalBot/API/blob/master/{route.path}" class="route_source-link">{route.route}</a></span>
+                                </div>
+                                <div class="card-subtitle">{route.description}</div>
+                            </div>
+                        </summary>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <h3>Parameters</h3>
+                                <div class="params-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {#each Object.keys(route.params) as param}
+                                                <tr>
+                                                    <td>{param}</td>
+                                                    <td>{route.params[param]}</td>
+                                                </tr>
+                                            {/each}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            {/each}
+        </div>
     </div>
 </div>
 
@@ -65,14 +156,97 @@
         padding: 0.25rem 0.5rem;
         border-radius: 0.25rem;
 
-        /* Prevent line from wrapping on a code block */
+        /* Prevent line from wrapping on a code block unless screen is too small */
         white-space: nowrap;
     }
 
     .page-contents {
         margin-top: 2rem;
 
-        padding-left: 20em;
-        padding-right: 20em;
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: #333;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 1600px) {
+        .card-header {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        code {
+            white-space: normal;
+        }
+    }
+
+    .card-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .params-table {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        border: 1px solid #555;
+    }
+
+    th, td {
+        padding: 0.5rem;
+        border-bottom: 1px solid #555;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    /* Create a line between name side and description side */
+    td {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 1px;
+            background-color: #555;
+        }
+    }
+
+    /* Add a line on the right edge of the table */
+    td:last-child {
+        border-right: 1px solid #555;
+    }
+
+    details > summary {
+        list-style: none;
+    }
+
+    /* or for Webkit-specific browsers */
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .card:hover {
+        transition: background-color 0.25s;
+        cursor: pointer;
+        background-color: #444;
     }
 </style>
