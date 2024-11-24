@@ -24,3 +24,9 @@ For a complete list of features that DaalBot has to offer you can click [here](/
 
 ## Support
 If you need any help with setting up the bot or have any questions you can join our support server by clicking [here](https://go.daalbot.xyz/HQ).
+
+## Contributing / For developers
+If you would like to contribute to the DaalBot project or are a developer looking to use the DaalBot API below are some useful links:
+- [GitHub](https://github.com/DaalBot)
+- [API](https://api.daalbot.xyz) / [API Docs](/docs/api)
+- [Discord](https://go.daalbot.xyz/HQ)
