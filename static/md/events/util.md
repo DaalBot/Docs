@@ -21,6 +21,18 @@ A collection of a few classes from discord.js that are safe to use in events.
 Object:<br/>
 ```js
 discord: {
+    builder: {
+        ModalBuilder: DJS.ModalBuilder,
+        TextInputBuilder: DJS.TextInputBuilder,
+        EmbedBuilder: DJS.EmbedBuilder,
+        ActionRowBuilder: DJS.ActionRowBuilder,
+        ButtonBuilder: DJS.ButtonBuilder,
+        StringSelectMenuOptionBuilder: DJS.StringSelectMenuOptionBuilder,
+        StringSelectMenuBuilder: DJS.StringSelectMenuBuilder
+    },
+    enum: {
+        TextInputStyle: DJS.TextInputStyle,
+    },
     embed: DJS.EmbedBuilder,
     components: {
         row: DJS.ActionRowBuilder,
