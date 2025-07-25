@@ -1,3 +1,8 @@
+---
+title: DaalBot API Key Transfer
+description: Understand what happens when you grant an application access to your DaalBot account
+---
+
 # DaalBot API Key Transfer
 If you are viewing this page, you have probably just been asked by a application to grant access to manage DaalBot. But what does that mean? This page will explain what happens when you grant access to a application, and what the application can do with that access.
 

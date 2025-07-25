@@ -1,3 +1,8 @@
+---
+title: Features Overview
+description: Explore the features DaalBot offers to enhance your Discord server.
+---
+
 > This page may be incomplete, we are still working on our documentation. If you have any questions, please join our [support server](https://go.daalbot.xyz/HQ).
 
 ## 🎫 Ticket System

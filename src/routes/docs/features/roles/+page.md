@@ -1,3 +1,8 @@
+---
+title: Roles Overview
+description: Learn about the different role-based features available in DaalBot
+---
+
 # Roles
 
 ## Table of Contents

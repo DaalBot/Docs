@@ -63,7 +63,7 @@
 <div class="page-header" style="text-align: center;">
     <h1>API</h1>
 </div>
-<hr/><br/>
+<br/>
 
 {#snippet ParamTable(/** @type {Record<string, {description:string, type:string, required:boolean, example?:string}>} */ input)}
     <table class="param-table">
@@ -127,14 +127,14 @@
         Obtaining a User Token
     </h2>
     <p>
-        In order to obtain a user token, you need to get the user to login to the daalbot dashboard (they will be prompted to do so if they aren't already). Once they are logged in, you can send them to the following URL: <code>https://daalbot.xyz/Dashboard/User/get-token</code>
+        In order to obtain a user token, you need to get the user to login to the daalbot dashboard (they will be prompted to do so if they aren't already). Once they are logged in, you can send them to the following URL: <code>https://dashboard.daalbot.xyz/get-token</code>
         <br/>
         <br/>
         This page accepts a two query parameters:
     </p>
     <ul>
         <li>
-            <code>return</code> - The URL to redirect the user to after they have logged in. This is required. (if set to <code>https://daalbot.xyz/show</code>, it will simply show the token in a popup instead of redirecting. This is useful for testing; however, it is not recommended for production use)
+            <code>return</code> - The URL to redirect the user to after they have logged in. This is required. (if set to <code>show</code>, it will simply show the token in a popup instead of redirecting. This is useful for testing; however, it is not recommended for production use)
         </li><br/>
         <li>
             <code>name</code> - The name of your app, by default your redirect URL will be shown as your app name. When specified the name will be shown instead in most places however your redirect URL will also be shown to allow the user to know where they are being redirected to. This is optional.

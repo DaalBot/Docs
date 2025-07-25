@@ -24,11 +24,11 @@
     <div class="content">
         <h1>DaalBot Docs</h1><br/>
         <div class="search">
-            <input type="text" bind:value={searchValue} placeholder="Search"/>
+            <input type="text" bind:value={searchValue} placeholder="Search" name="Search through documentation"/>
             {#if results.length > 0}
                 <div class="results">
                     {#each results as result}
-                        <a href="/docs{result.path}" style="color: white; text-decoration: none;" class="result">
+                        <a href="{result.path}" style="color: white; text-decoration: none;" class="result">
                             <div style="margin: 5px;">
                                 {result.path.replace('/docs/', '').split('/')[0].replace(/\b\w/g, (/** @type {string} */ l) => l.toUpperCase())} > {result.name}
                             </div>
@@ -130,7 +130,6 @@
 
         background-color: #2f2f2f;
 
-        border: solid 7px #4d4d4d;
         border-radius: 15px;
 
         left: 50%;

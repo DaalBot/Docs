@@ -1,3 +1,8 @@
+---
+title: Events Overview
+description: Learn how to create and use events to automate actions in your Discord server
+---
+
 # Events
 
 ## What is a event?

@@ -6,11 +6,11 @@
 
 <a {href} class="btn btn-{variant}" target="_blank" rel="noopener noreferrer">
 	{text}
-</a>
+</a><br/>
 
 <style>
 	.btn {
-		display: inline-block;
+		display: block;
 		padding: 0.75rem 1.5rem;
 		border-radius: 0.375rem;
 		text-decoration: none;
@@ -21,6 +21,13 @@
 		cursor: pointer;
 
         color: white !important;
+	}
+
+	/* Shove the button as far right as possible when on mobile */
+	@media (min-width: 1000px) {
+		.btn {
+			float: left;
+		}
 	}
 
 	.btn-primary {

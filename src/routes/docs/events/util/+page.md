@@ -1,3 +1,8 @@
+---
+title: Event Utils
+description: Utility functions for working with DaalBot events
+---
+
 # Event Utils
 This module provides utility functions for working with events since obviously you cant do stuff like interact with the filesystem / make network requests in a event.
 

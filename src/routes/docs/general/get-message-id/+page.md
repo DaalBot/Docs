@@ -1,3 +1,8 @@
+---
+title: Getting Message IDs
+description: Learn how to find and use Discord message IDs
+---
+
 # Getting Message IDs
 Message IDs are unique identifiers for messages in the chat. They are used to identify messages in the chat, while most places where you can put in a message ID will also accept a message link, it is still useful to know how to get a message ID.
 

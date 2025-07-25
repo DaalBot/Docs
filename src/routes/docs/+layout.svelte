@@ -1,8 +1,16 @@
-<script>
+<script lang="ts">
 	import '$lib/global.css';
     import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
-    onMount(() => {
+	let metadata: {
+		title?: string;
+		description?: string;
+		keywords?: string;
+		author?: string;
+	} = {};
+
+    onMount(async() => {
         // If the location has a hash, try to scroll a element matching the innerText to it
         const hash = window.location.hash;
         if (hash) {
@@ -31,8 +39,28 @@
                 });
             }
         });
+
+		// Import the page module dynamically
+		const documentName = page.url.href.split('/').pop();
+		const documentCategory = page.url.pathname.split('/')[2];
+		const module = await import(`./${documentCategory}/${documentName}/+page.md`);
+		metadata = module.metadata || {};
     });
 </script>
+
+<svelte:head>
+	<title>{metadata.title || 'DaalBot Documentation'}</title>
+	<meta name="description" content={metadata.description || 'The official documentation for daalbot'} />
+	<meta name="keywords" content={metadata.keywords || 'DaalBot, Discord, Bot, Documentation, Docs'} />
+	<meta name="author" content={metadata.author || 'DaalBot Team'} />
+	<link rel="icon" href="https://media.piny.dev/DaalBotSquare.png" />
+
+	<meta property="og:title" content={metadata.title || 'DaalBot Documentation'} />
+	<meta property="og:description" content={metadata.description || 'The official documentation for daalbot'} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={page.url.href} />
+	<meta property="og:image" content="https://media.piny.dev/DaalBotSquare.png" />
+</svelte:head>
 
 <main class="docs-layout">
 	<slot />
@@ -44,6 +72,13 @@
 		margin: 0 auto;
 		padding: 2rem;
 		line-height: 1.6;
+	}
+
+	@media (max-width: 768px) {
+		.docs-layout {
+			max-width: 750px;
+			padding: 1rem;
+		}
 	}
 
 	.docs-layout :global(h1) {
