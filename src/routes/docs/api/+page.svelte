@@ -43,7 +43,7 @@
     };
 
     onMount(async() => {
-        const res = await fetch('https://cdn.jsdelivr.net/gh/DaalBot/API@ts-rewrite/docs.json');
+        const res = await fetch('https://cdn.jsdelivr.net/gh/DaalBot/API/docs.json');
         docs = await res.json();
     }) // Fetch the documentation from the API repository
 </script>
@@ -144,7 +144,7 @@
         Obtaining a Guild Key
     </h2>
     <p>
-        In order to obtain a guild key, you need to first be in the DaalBot support server. If you are not you can join [here](https://go.daalbot.xyz/HQ). Once you are in the server, go to a channel where you can run commands and run the command <code>/api keys generate</code>, this will walk you through the process of generating a key and how to use it. You can only generate a key for a guild that you are the owner of.
+        In order to obtain a guild key, you need to first be in the DaalBot support server. If you are not you can join <a href="https://go.daalbot.xyz/HQ">here</a>. Once you are in the server, go to a channel where you can run commands and run the command <code>/api keys generate</code>, this will walk you through the process of generating a key and how to use it. You can only generate a key for a guild that you are the owner of.
     </p>
     <h2>
         Using dashboard routes

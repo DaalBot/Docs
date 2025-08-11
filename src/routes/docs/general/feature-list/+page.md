@@ -34,7 +34,11 @@ Events are a powerful feature that allows you to create custom logic to run in y
 [Hex](https://hex.daalbot.xyz) is a discord tool site that allows you do things such as:
 - [**Components V2 Support**](https://hex.daalbot.xyz/components): Easily create and send Components V2 messages.
 
-## 🔗 Open API
+## 🔗 Invite tracking
+- **Invite Tracking**: Keep track of who used what invite link to join your server.
+- **Role Invites**: Assign roles to users depending on which invite link they used to join.
+
+## 💻 Open API
 Our API is designed to be as open and accessible as possible, whether you want to build your own bot to integrate with DaalBot or use the API for other purposes. You can find the API documentation [here](/docs/api).
 
 > And much more! DaalBot is always evolving—join the [support server](https://go.daalbot.xyz/HQ) for help or to suggest new features.
