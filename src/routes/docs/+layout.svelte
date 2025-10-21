@@ -62,11 +62,43 @@
 	<meta property="og:image" content="https://media.piny.dev/DaalBotSquare.png" />
 </svelte:head>
 
+<nav>
+	<div>
+		<!-- Left -->
+		<h2 class="page-title">{metadata.title}</h2>
+	</div>
+	<div>
+		<!-- Center -->
+	</div>
+	<div>
+		<!-- Right -->
+		<input type="text" placeholder="Search..." class="nav-search-input" />
+	</div>
+</nav>
 <main class="docs-layout">
 	<slot />
 </main>
 
 <style>
+	nav {
+		background-color: #222;
+		padding: 1rem 2rem;
+		border-radius: 10px 10px 0 0;
+		border-bottom: 1px solid #444;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nav-search-input {
+		padding: 0.5rem 1rem;
+		border: 2px solid #555;
+		border-radius: 5px;
+		background-color: #333;
+		color: #eee;
+	}
+
 	.docs-layout {
 		max-width: 1300px;
 		margin: 0 auto;
