@@ -2,6 +2,7 @@
 	import '$lib/global.css';
     import { onMount } from 'svelte';
 	import { page } from '$app/state';
+    import Button from '$lib/components/Button.svelte';
 
 	let metadata: {
 		title?: string;
@@ -55,6 +56,11 @@
 	<meta name="author" content={metadata.author || 'DaalBot Team'} />
 	<link rel="icon" href="https://media.piny.dev/DaalBotSquare.png" />
 
+	<!-- Fonts - These will be swapped out by cloudflare eventually -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
 	<meta property="og:title" content={metadata.title || 'DaalBot Documentation'} />
 	<meta property="og:description" content={metadata.description || 'The official documentation for daalbot'} />
 	<meta property="og:type" content="website" />
@@ -62,11 +68,52 @@
 	<meta property="og:image" content="https://media.piny.dev/DaalBotSquare.png" />
 </svelte:head>
 
+<nav>
+	<div>
+		<!-- Left -->
+		<h2 class="page-title">{metadata.title}</h2>
+	</div>
+	<div>
+		<!-- Center -->
+		<Button href="https://github.com/DaalBot/Docs/tree/main/src/routes{page.url.pathname}/+page.md" text="Edit page" variant="secondary" />
+	</div>
+	<div>
+		<!-- Right -->
+		<input type="text" placeholder="Search" class="nav-search-input" on:keypress={(e) => {
+			// If Enter is pressed, navigate to the search page
+			if (e.key === 'Enter') {
+				const query = (e.target as HTMLInputElement).value;
+				window.location.href = `/search?q=${encodeURIComponent(query)}`;
+			}
+		}} />
+	</div>
+</nav>
 <main class="docs-layout">
 	<slot />
 </main>
 
 <style>
+	nav {
+		background-color: #222;
+		padding: 1rem 2rem;
+		border-radius: 10px 10px 0 0;
+		border-bottom: 1px solid #444;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nav-search-input {
+		padding: 0.5rem 1rem;
+		border: 2px solid #555;
+		border-radius: 5px;
+		background-color: #333;
+		color: #eee;
+
+		font-size: 1rem;
+	}
+
 	.docs-layout {
 		max-width: 1300px;
 		margin: 0 auto;
@@ -108,17 +155,11 @@
 	}
 
 	.docs-layout :global(pre) {
-		background-color: #f8f8f8;
 		border: 1px solid #ddd;
 		border-radius: 5px;
 		padding: 1rem;
 		overflow-x: auto;
 		margin: 1rem 0;
-	}
-
-	.docs-layout :global(pre code) {
-		background-color: transparent;
-		padding: 0;
 	}
 
 	.docs-layout :global(blockquote) {
@@ -175,5 +216,13 @@
 	.docs-layout :global(th) {
 		background-color: #f8f8f8;
 		font-weight: bold;
+	}
+
+	.docs-layout :global(code) {
+		font-size: 0.95rem;
+		background-color: #363535;
+		padding: 0.2rem 0.4rem;
+		border-radius: 3px;
+		font-family: 'JetBrains Mono', 'Courier New', monospace;
 	}
 </style>

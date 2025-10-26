@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	export let href = '';
 	export let text = '';
-	export let variant = 'primary';
+	export let variant: 'primary' | 'success' | 'warning' | 'secondary' = 'primary';
 </script>
 
 <a {href} class="btn btn-{variant}" target="_blank" rel="noopener noreferrer">
@@ -55,5 +55,14 @@
 
 	.btn-warning:hover {
 		background-color: #d97706;
+	}
+
+	.btn-secondary {
+		background-color: #6b7280;
+		color: white;
+	}
+
+	.btn-secondary:hover {
+		background-color: #4b5563;
 	}
 </style>
