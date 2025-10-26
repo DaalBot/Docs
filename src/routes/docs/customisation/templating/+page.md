@@ -3,7 +3,7 @@ title: Templating
 description: Learn how to use templating in DaalBot to create dynamic and personalized messages
 ---
 
-> ⚠️ This page covers features that are not fully implemented yet, it also contains examples that may or may not function. You shouldn't use this page as a direct source instead it should be used to learn how to use these features yourself.
+> ⚠️ This page contains examples that may or may not function. You shouldn't use this page as a direct source instead it should be used to learn how to use these features yourself.
 
 # Templating in DaalBot
 DaalBot offers a powerful templating system that allows you to create dynamic and personalized messages for your server. By using placeholders and variables, you can customize responses based on user input, server data, and more.
